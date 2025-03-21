@@ -19,10 +19,7 @@ while len(guessed_cities) != len(all_cities):
     answer_city = screen.textinput(title=f"{len(guessed_cities)}/{len(all_cities)}", prompt="Bir vilayet daha tahmin et! \n Çıkmak için 'Çıkış' yaz. ").capitalize()
 
     if answer_city == "Çıkış":
-        missing_cities = []
-        for city in all_cities:
-            if city not in guessed_cities:
-                missing_cities.append(city)
+        missing_cities = [city for city in all_cities if city not in guessed_cities]
         new_data = pandas.DataFrame(missing_cities)
         new_data.to_csv("missing_cities.csv")
         break
